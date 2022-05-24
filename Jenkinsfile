@@ -1,10 +1,10 @@
 pipeline {
-	agent { label { docker {image 'maven:3.6.3' } } }
-	stages {
+	agent { docker {image 'maven:3.6.3'}}
+	stages{
 		stage('Build'){
 			steps {
 				sh 'mvn --version'
-				echo "this is maven version"
+				echo "this is maven"
 			}
 		}
 		stage('Test'){
@@ -27,9 +27,6 @@ pipeline {
 		}
 		failure {
 			echo "I run only when you fail"
-		}
-		changed {
-			echo "I run when something changes"
 		}
 	}
 }
