@@ -40,6 +40,7 @@ pipeline {
 			steps {
 				script {
 					dockerImage = dcoker.build("anshumanrawat/currency-exchange-devops:${env.Build_TAG}")
+					echo "Build Done"
 				}
 			}
 		}
