@@ -49,7 +49,7 @@ pipeline {
 				script {
 					echo "Build Done"
 					docker.withRegistry('', 'Docker') {
-						dockerImage.push('latest');
+						dockerImage.push('latest')
 					}
 				}
 			}
