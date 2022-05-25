@@ -1,9 +1,9 @@
 pipeline {
-	agent any
+	agent {docker { image {python:latest}}}
 	stages{
 		stage('Try Run Python'){
 			steps {
-				sh "python $PATH/launch.py"
+				sh "python launch.py"
 			}
 		}
 	} 
