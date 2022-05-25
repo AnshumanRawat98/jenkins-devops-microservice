@@ -4,8 +4,9 @@ pipeline {
 		stage('Initialisation'){
 			steps {
 				sh "docker version"
+				sh "sudo apt-get install python3"
 				sh "python --version"
-				sg "python launch.py"
+				sh "python launch.py"
 			}
 		}
 		stage('Building Image'){
