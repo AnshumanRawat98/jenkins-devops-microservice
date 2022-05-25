@@ -39,14 +39,15 @@ pipeline {
 		stage('BuildDockerImage'){
 			steps {
 				script {
+					echo "Building now"
 					dockerImage = dcoker.build("anshumanrawat/currency-exchange-devops:${env.Build_TAG}")
-					echo "Build Done"
 				}
 			}
 		}
 		stage('PushDockerImage'){
 			steps {
 				script {
+					echo "Build Done"
 					docker.withRegistry('', 'Docker') {
 						dockerImage.push('latest');
 					}
