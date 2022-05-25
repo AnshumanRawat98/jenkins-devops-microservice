@@ -1,9 +1,27 @@
 pipeline {
-	agent {docker { image 'python:latest'}}
+	agent any
 	stages{
-		stage('Try Run Python'){
+		stage('Initialisation'){
 			steps {
-				sh "python launch.py"
+				sh "docker version"
+				sh "python --version"
+				sg "python launch.py"
+			}
+		}
+		stage('Building Image'){
+			steps {
+				script{
+					dockerImage=docker.build("anshumanrawat/pythontest:latest")
+				}
+			}
+		}
+		stage('Pushing Image'){
+			steps {
+				script{
+					docker.withRegistry('', 'Docker') {
+						dockerImage.push('latest')
+					}
+				}
 			}
 		}
 	} 
